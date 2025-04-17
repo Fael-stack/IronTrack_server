@@ -1,0 +1,32 @@
+{
+  "name": "backend-mongoose-auth-jwt",
+  "version": "1.0.0",
+  "description": "Este documento padroniza o fluxo de trabalho com GitHub, abordando nomeação de branches, convenção de commits, criação de pull requests e boas práticas gerais.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fael-stack/IronTrack_server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Fael-stack/IronTrack_server/issues"
+  },
+  "homepage": "https://github.com/Fael-stack/IronTrack_server#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
