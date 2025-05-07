@@ -1,6 +1,6 @@
-import Usuario from '../models/Usuario.js';
-import { hashPassword, comparePassword } from '../utils/hash.js';
-import { generateToken } from '../utils/jwt.js';
+import Usuario from "../models/Usuario.js";
+import { hashPassword, comparePassword } from "../utils/hash.js";
+import { generateToken } from "../utils/jwt.js";
 
 const createUsuario = async (req, res) => {
   try {
@@ -17,15 +17,16 @@ const loginUsuario = async (req, res) => {
   const { email, senha } = req.body;
   try {
     const usuario = await Usuario.findOne({ email });
-    if (!usuario) return res.status(400).json({ msg: 'Usuário não encontrado' });
+    if (!usuario)
+      return res.status(400).json({ msg: "Usuário não encontrado" });
 
     const senhaCorreta = await comparePassword(senha, usuario.senha);
-    if (!senhaCorreta) return res.status(401).json({ msg: 'Senha incorreta' });
+    if (!senhaCorreta) return res.status(401).json({ msg: "Senha incorreta" });
 
     const token = generateToken({ id: usuario._id, email: usuario.email });
     res.json({ token, usuario: { id: usuario._id, nome: usuario.nome } });
   } catch (err) {
-    res.status(500).json({ msg: 'Erro no login', error: err.message });
+    res.status(500).json({ msg: "Erro no login", error: err.message });
   }
 };
 
@@ -41,7 +42,8 @@ const getUsuarios = async (req, res) => {
 const getUsuarioById = async (req, res) => {
   try {
     const usuario = await Usuario.findById(req.params.id);
-    if (!usuario) return res.status(404).json({ error: 'Usuário não encontrado' });
+    if (!usuario)
+      return res.status(404).json({ error: "Usuário não encontrado" });
     res.status(200).json(usuario);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -50,8 +52,11 @@ const getUsuarioById = async (req, res) => {
 
 const updateUsuario = async (req, res) => {
   try {
-    const usuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!usuario) return res.status(404).json({ error: 'Usuário não encontrado' });
+    const usuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!usuario)
+      return res.status(404).json({ error: "Usuário não encontrado" });
     res.status(200).json(usuario);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -61,7 +66,8 @@ const updateUsuario = async (req, res) => {
 const deleteUsuario = async (req, res) => {
   try {
     const usuario = await Usuario.findByIdAndDelete(req.params.id);
-    if (!usuario) return res.status(404).json({ error: 'Usuário não encontrado' });
+    if (!usuario)
+      return res.status(404).json({ error: "Usuário não encontrado" });
     res.status(204).send();
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -74,5 +80,5 @@ export {
   getUsuarios,
   getUsuarioById,
   updateUsuario,
-  deleteUsuario
+  deleteUsuario,
 };
