@@ -1,26 +1,57 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common"; 
+import { InjectModel } from "@nestjs/mongoose";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { User,UserSchema } from "./schema/user.schema";
+import { Model } from "mongoose";
+import { validateId } from "src/utils/validate.id";
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return "This action adds a new user";
+
+  constructor(
+    @InjectModel(User.name) private readonly userSchema: Model<UserSchema>,
+    ) { }
+
+
+  create(createUserDto: CreateUserDto): Promise<User> {
+    const newUser = new this.userSchema(createUserDto);
+    return newUser.save();
   }
 
   findAll() {
     return `This action returns all user`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
+  async findOne(id: string): Promise<User> {
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
+        validateId(id); // Valida o ID antes de fazer a busca
+        const user = await this.userSchema.findById(id).exec();
+        if (!user) {
+            throw new NotFoundException(`User com id: ${id} não encontrado`);
+        }
+        return user;
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
+  async update(id: string, updateUserDTO: UpdateUserDto): Promise<User> {
+
+        validateId(id); // Valida o ID antes de fazer a busca
+
+        const user = await this.userSchema.findByIdAndUpdate(id, updateUserDTO, { new: true }).exec();
+        if (!user) {
+            throw new NotFoundException(`Estudante com id: ${id} não encontrado`);
+        }
+        return user;
+    }
+
+  async delete(id: string): Promise<{ message: string }> {
+
+        validateId(id); // Valida o ID antes de fazer a busca
+
+        const user = await this.userSchema.findByIdAndDelete(id).exec();
+        if (!user) {
+            throw new NotFoundException(`User com id ${id} não encontrado`);
+        }
+        return { message: `User com id: ${id} deletado com sucesso` };
+    }   
 }

@@ -1,0 +1,21 @@
+import { Module } from '@nestjs/common';
+import { AlimentoModule } from './modules/alimento/alimento.module';
+import { DietaModule } from './modules/dieta/dieta.module';
+import { AuthModule } from './modules/auth-login/auth.module';
+import { ExercicioModule } from './modules/exercicio/exercicio.module';
+import { TreinadorModule } from './modules/treinador/treinador.module';
+import { TreinoModule } from './modules/treino/treino.module';
+import { UserModule } from './modules/user/user.module';
+
+
+
+@Module({
+
+  imports: [ AlimentoModule, DietaModule, AuthModule, ExercicioModule, TreinadorModule, TreinoModule, UserModule
+   
+  ],
+
+  controllers: [],
+  providers: [],
+})
+export class AppModule { }

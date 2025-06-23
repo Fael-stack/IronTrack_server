@@ -21,6 +21,6 @@
     "moduleResolution": "node",              // Compatível com importações no Nest
     "resolveJsonModule": true                // Permite importar arquivos .json
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "app.module.ts", "app.service.ts", "test/**/*"],
   "exclude": ["node_modules", "dist"]
 }
