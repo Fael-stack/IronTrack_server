@@ -10,10 +10,14 @@ import {
 import { TreinadorService } from "./treinador.service";
 import { CreateTreinadorDto } from "./dto/create-treinador.dto";
 import { UpdateTreinadorDto } from "./dto/update-treinador.dto";
+import { EncryptService } from "src/utils/encrypt/encrypt.service";
 
 @Controller("treinador")
 export class TreinadorController {
-  constructor(private readonly treinadorService: TreinadorService) {}
+  constructor(
+    private readonly treinadorService: TreinadorService,
+    private readonly encryptService: EncryptService,
+  ) {}
 
   @Post()
   create(@Body() createTreinadorDto: CreateTreinadorDto) {

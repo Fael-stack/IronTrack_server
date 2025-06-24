@@ -47,4 +47,4 @@ export class DietaService {
       throw new NotFoundException(`Dieta com id ${id} não encontrada`);
     }
     return { message: `Dieta com id: ${id} deletada com sucesso` };
-  }
+  } }
