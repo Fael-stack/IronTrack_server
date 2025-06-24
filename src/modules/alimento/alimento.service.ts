@@ -1,26 +1,53 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common"; 
+import { InjectModel } from "@nestjs/mongoose";
 import { CreateAlimentoDto } from "./dto/create-alimento.dto";
 import { UpdateAlimentoDto } from "./dto/update-alimento.dto";
+import { Alimento, AlimentoDocument } from "./schema/alimento.schema";
+import { Model } from "mongoose";
+import { validateId } from "src/utils/validate.id";
 
 @Injectable()
 export class AlimentoService {
-  create(createAlimentoDto: CreateAlimentoDto) {
-    return "This action adds a new alimento";
+  constructor(
+    @InjectModel(Alimento.name)
+    private readonly alimentoModel: Model<AlimentoDocument>,
+  ) {}
+
+  create(createAlimentoDto: CreateAlimentoDto): Promise<Alimento> {
+    const newAlimento = new this.alimentoModel(createAlimentoDto);
+    return newAlimento.save();
   }
 
-  findAll() {
-    return `This action returns all alimento`;
+  findAll(): Promise<Alimento[]> {
+    return this.alimentoModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} alimento`;
+  async findOne(id: string): Promise<Alimento> {
+    validateId(id);
+    const alimento = await this.alimentoModel.findById(id).exec();
+    if (!alimento) {
+      throw new NotFoundException(`Alimento com id: ${id} não encontrado`);
+    }
+    return alimento;
   }
 
-  update(id: number, updateAlimentoDto: UpdateAlimentoDto) {
-    return `This action updates a #${id} alimento`;
+  async update(id: string, updateAlimentoDto: UpdateAlimentoDto): Promise<Alimento> {
+    validateId(id);
+    const alimento = await this.alimentoModel
+      .findByIdAndUpdate(id, updateAlimentoDto, { new: true })
+      .exec();
+    if (!alimento) {
+      throw new NotFoundException(`Alimento com id: ${id} não encontrado`);
+    }
+    return alimento;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} alimento`;
+  async delete(id: string): Promise<{ message: string }> {
+    validateId(id);
+    const alimento = await this.alimentoModel.findByIdAndDelete(id).exec();
+    if (!alimento) {
+      throw new NotFoundException(`Alimento com id ${id} não encontrado`);
+    }
+    return { message: `Alimento com id: ${id} deletado com sucesso` };
   }
 }

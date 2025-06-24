@@ -10,10 +10,14 @@ import {
 import { AlimentoService } from "./alimento.service";
 import { CreateAlimentoDto } from "./dto/create-alimento.dto";
 import { UpdateAlimentoDto } from "./dto/update-alimento.dto";
+import { EncryptService } from "src/utils/encrypt/encrypt.service";
 
 @Controller("alimento")
 export class AlimentoController {
-  constructor(private readonly alimentoService: AlimentoService) {}
+  constructor(
+    private readonly alimentoService: AlimentoService,
+    private readonly encryptService: EncryptService,
+  ) {}
 
   @Post()
   create(@Body() createAlimentoDto: CreateAlimentoDto) {
@@ -27,19 +31,16 @@ export class AlimentoController {
 
   @Get(":id")
   findOne(@Param("id") id: string) {
-    return this.alimentoService.findOne(+id);
+    return this.alimentoService.findOne(id);
   }
 
   @Patch(":id")
-  update(
-    @Param("id") id: string,
-    @Body() updateAlimentoDto: UpdateAlimentoDto,
-  ) {
-    return this.alimentoService.update(+id, updateAlimentoDto);
+  update(@Param("id") id: string, @Body() updateAlimentoDto: UpdateAlimentoDto) {
+    return this.alimentoService.update(id, updateAlimentoDto);
   }
 
   @Delete(":id")
-  remove(@Param("id") id: string) {
-    return this.alimentoService.remove(+id);
+  delete(@Param("id") id: string) {
+    return this.alimentoService.delete(id);
   }
 }
