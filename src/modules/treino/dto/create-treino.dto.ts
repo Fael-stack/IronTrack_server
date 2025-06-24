@@ -6,7 +6,6 @@ export class CreateTreinoDto {
   nome!: string;
 
   @IsString()
-  @IsOptional()
   objetivo?: string;
 
   @IsMongoId({ message: 'ID de usuário inválido' })

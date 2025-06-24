@@ -1,26 +1,50 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common"; 
+import { InjectModel } from "@nestjs/mongoose";
 import { CreateDietaDto } from "./dto/create-dieta.dto";
 import { UpdateDietaDto } from "./dto/update-dieta.dto";
+import { Dieta, DietaDocument } from "./schema/dieta.schema";
+import { Model } from "mongoose";
+import { validateId } from "src/utils/validate.id";
 
 @Injectable()
 export class DietaService {
-  create(createDietaDto: CreateDietaDto) {
-    return "This action adds a new dieta";
+
+  constructor(
+    @InjectModel(Dieta.name) private readonly dietaModel: Model<DietaDocument>,
+  ) {}
+
+  create(createDietaDto: CreateDietaDto): Promise<Dieta> {
+    const newDieta = new this.dietaModel(createDietaDto);
+    return newDieta.save();
   }
 
   findAll() {
     return `This action returns all dieta`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} dieta`;
+  async findOne(id: string): Promise<Dieta> {
+    validateId(id);
+    const dieta = await this.dietaModel.findById(id).exec();
+    if (!dieta) {
+      throw new NotFoundException(`Dieta com id: ${id} não encontrada`);
+    }
+    return dieta;
   }
 
-  update(id: number, updateDietaDto: UpdateDietaDto) {
-    return `This action updates a #${id} dieta`;
+  async update(id: string, updateDietaDto: UpdateDietaDto): Promise<Dieta> {
+    validateId(id);
+    const dieta = await this.dietaModel.findByIdAndUpdate(id, updateDietaDto, { new: true }).exec();
+    if (!dieta) {
+      throw new NotFoundException(`Dieta com id: ${id} não encontrada`);
+    }
+    return dieta;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} dieta`;
-  }
-}
+  async delete(id: string): Promise<{ message: string }> {
+    validateId(id);
+    const dieta = await this.dietaModel.findByIdAndDelete(id).exec();
+    if (!dieta) {
+      throw new NotFoundException(`Dieta com id ${id} não encontrada`);
+    }
+    return { message: `Dieta com id: ${id} deletada com sucesso` };
+  } }

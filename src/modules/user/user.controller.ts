@@ -14,7 +14,10 @@ import { EncryptService } from "src/utils/encrypt/encrypt.service";
 
 @Controller("user")
 export class UserController {
-  constructor(private readonly userService: UserService,private readonly encryptService: EncryptService,) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly encryptService: EncryptService,
+) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -25,7 +28,7 @@ export class UserController {
   findAll() {
     return this.userService.findAll();
   }
-
+  
   @Get(":id")
   findOne(@Param("id") id: string) {
     return this.userService.findOne(id);
