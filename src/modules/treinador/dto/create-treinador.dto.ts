@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsEmail, IsPhoneNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsEmail, IsPhoneNumber } from 'class-validator';
 
 export class CreateTreinadorDto {
   @IsString()
@@ -12,6 +12,6 @@ export class CreateTreinadorDto {
   email!: string;
 
   @IsString()
-  @IsPhoneNumber(null, { message: 'Telefone inválido' })
+  @IsPhoneNumber('BR', { message: 'Telefone inválido' })
   telefone?: string;
 }
