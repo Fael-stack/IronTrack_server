@@ -1,12 +1,12 @@
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
-import { User, UserSchema } from "./schema/user.schema";
-import { Model } from "mongoose";
+import { Model } from 'mongoose';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { User, UserDocument } from './schema/user.schema';
 export declare class UserService {
-    private readonly userSchema;
-    constructor(userSchema: Model<UserSchema>);
+    private readonly userModel;
+    constructor(userModel: Model<UserDocument>);
     create(createUserDto: CreateUserDto): Promise<User>;
-    findAll(): string;
+    findAll(): Promise<User[]>;
     findOne(id: string): Promise<User>;
     update(id: string, updateUserDTO: UpdateUserDto): Promise<User>;
     delete(id: string): Promise<{

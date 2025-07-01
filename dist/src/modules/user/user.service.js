@@ -15,23 +15,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const user_schema_1 = require("./schema/user.schema");
 const mongoose_2 = require("mongoose");
+const user_schema_1 = require("./schema/user.schema");
 const validate_id_1 = require("../../utils/validate.id");
 let UserService = class UserService {
-    constructor(userSchema) {
-        this.userSchema = userSchema;
+    constructor(userModel) {
+        this.userModel = userModel;
     }
     create(createUserDto) {
-        const newUser = new this.userSchema(createUserDto);
+        const newUser = new this.userModel(createUserDto);
         return newUser.save();
     }
-    findAll() {
-        return `This action returns all user`;
+    async findAll() {
+        return await this.userModel.find().exec();
     }
     async findOne(id) {
         (0, validate_id_1.validateId)(id);
-        const user = await this.userSchema.findById(id).exec();
+        const user = await this.userModel.findById(id).exec();
         if (!user) {
             throw new common_1.NotFoundException(`User com id: ${id} não encontrado`);
         }
@@ -39,15 +39,17 @@ let UserService = class UserService {
     }
     async update(id, updateUserDTO) {
         (0, validate_id_1.validateId)(id);
-        const user = await this.userSchema.findByIdAndUpdate(id, updateUserDTO, { new: true }).exec();
+        const user = await this.userModel
+            .findByIdAndUpdate(id, updateUserDTO, { new: true })
+            .exec();
         if (!user) {
-            throw new common_1.NotFoundException(`Estudante com id: ${id} não encontrado`);
+            throw new common_1.NotFoundException(`Usuário com id: ${id} não encontrado`);
         }
         return user;
     }
     async delete(id) {
         (0, validate_id_1.validateId)(id);
-        const user = await this.userSchema.findByIdAndDelete(id).exec();
+        const user = await this.userModel.findByIdAndDelete(id).exec();
         if (!user) {
             throw new common_1.NotFoundException(`User com id ${id} não encontrado`);
         }

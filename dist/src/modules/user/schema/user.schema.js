@@ -28,10 +28,12 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "senha", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId, ref: "Treinador" }),
+    (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId, ref: 'Treinador' }),
     __metadata("design:type", mongoose_2.Types.ObjectId)
 ], User.prototype, "treinador", void 0);
 exports.User = User = __decorate([
-    (0, mongoose_1.Schema)()
+    (0, mongoose_1.Schema)({
+        timestamps: true,
+    })
 ], User);
 exports.UserSchema = mongoose_1.SchemaFactory.createForClass(User);

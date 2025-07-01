@@ -7,7 +7,7 @@ export declare class UserController {
     private readonly encryptService;
     constructor(userService: UserService, encryptService: EncryptService);
     create(createUserDto: CreateUserDto): Promise<import("./schema/user.schema").User>;
-    findAll(): string;
+    findAll(): Promise<import("./schema/user.schema").User[]>;
     findOne(id: string): Promise<import("./schema/user.schema").User>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<import("./schema/user.schema").User>;
     delete(id: string): Promise<{
