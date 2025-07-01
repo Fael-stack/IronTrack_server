@@ -45,23 +45,24 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginJwtService = void 0;
+exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const jwt_1 = require("@nestjs/jwt");
 const mongoose_2 = require("mongoose");
 const user_schema_1 = require("../user/schema/user.schema");
 const encrypt_service_1 = require("../../utils/encrypt/encrypt.service");
+const RefreshToken_schema_1 = require("../RefreshToken/RefreshToken.schema");
 const crypto = __importStar(require("crypto"));
-let LoginJwtService = class LoginJwtService {
-    constructor(jwtService, encryptService, userSchema, refreshTokenSchema) {
+let AuthService = class AuthService {
+    constructor(jwtService, encryptService, userModel, refreshTokenModel) {
         this.jwtService = jwtService;
         this.encryptService = encryptService;
-        this.userSchema = userSchema;
-        this.refreshTokenSchema = refreshTokenSchema;
+        this.userModel = userModel;
+        this.refreshTokenModel = refreshTokenModel;
     }
     async login(email, senha, lembrar) {
-        const user = await this.usersSchema.findOne({ email }).exec();
+        const user = await this.userModel.findOne({ email }).exec();
         if (!user) {
             throw new common_1.UnauthorizedException('Email não encontrado');
         }
@@ -74,7 +75,6 @@ let LoginJwtService = class LoginJwtService {
             email: user.email,
             nome: user.nome,
             senha: user.senha,
-            usuario: user.usuario,
         };
         const token = this.jwtService.sign(payload, { expiresIn: '1h' });
         const refreshTokenValue = crypto.randomBytes(64).toString('hex');
@@ -82,7 +82,7 @@ let LoginJwtService = class LoginJwtService {
             ? 30 * 24 * 60 * 60 * 1000
             : 1 * 24 * 60 * 60 * 1000;
         const refreshTokenExpiresAt = new Date(Date.now() + refreshTokenExpiresInMs);
-        const newRefreshToken = new this.refreshTokenSchema({
+        const newRefreshToken = new this.refreshTokenModel({
             longToken: refreshTokenValue,
             userId: user._id,
             expiresAt: refreshTokenExpiresAt,
@@ -92,13 +92,11 @@ let LoginJwtService = class LoginJwtService {
         return { token, refreshToken: refreshTokenValue };
     }
     async refreshTokens(oldRefreshToken) {
-        const foundToken = await this.refreshTokenSchema
+        const foundToken = await this.refreshTokenModel
             .findOne({ longToken: oldRefreshToken, revoked: false })
             .exec();
         if (!foundToken || foundToken.expiresAt < new Date()) {
-            if (foundToken &&
-                foundToken.expiresAt < new Date() &&
-                !foundToken.revoked) {
+            if (foundToken && foundToken.expiresAt < new Date() && !foundToken.revoked) {
                 foundToken.revoked = true;
                 await foundToken.save();
             }
@@ -106,9 +104,7 @@ let LoginJwtService = class LoginJwtService {
         }
         foundToken.revoked = true;
         await foundToken.save();
-        const user = await this.usersSchema
-            .findById(foundToken.userId)
-            .exec();
+        const user = await this.userModel.findById(foundToken.userId).exec();
         if (!user) {
             throw new common_1.UnauthorizedException('Usuário associado ao refresh token não encontrado.');
         }
@@ -116,13 +112,12 @@ let LoginJwtService = class LoginJwtService {
             id: user._id,
             email: user.email,
             nome: user.nome,
-            curso: user.curso,
-            usuario: user.usuario
+            senha: user.senha,
         };
         const newToken = this.jwtService.sign(payload, { expiresIn: '1h' });
         const newRefreshTokenValue = crypto.randomBytes(64).toString('hex');
         const newRefreshTokenExpiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
-        const brandNewRefreshToken = new this.refreshTokenSchema({
+        const brandNewRefreshToken = new this.refreshTokenModel({
             longToken: newRefreshTokenValue,
             userId: user._id,
             expiresAt: newRefreshTokenExpiresAt,
@@ -132,7 +127,7 @@ let LoginJwtService = class LoginJwtService {
         return { token: newToken, refreshToken: newRefreshTokenValue };
     }
     async logout(refreshToken) {
-        const result = await this.refreshTokenSchema
+        const result = await this.refreshTokenModel
             .findOneAndUpdate({ longToken: refreshToken, revoked: false }, { $set: { revoked: true } }, { new: true })
             .exec();
         if (!result) {
@@ -140,13 +135,13 @@ let LoginJwtService = class LoginJwtService {
         }
     }
 };
-exports.LoginJwtService = LoginJwtService;
-exports.LoginJwtService = LoginJwtService = __decorate([
+exports.AuthService = AuthService;
+exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
     __param(2, (0, mongoose_1.InjectModel)(user_schema_1.User.name)),
-    __param(3, (0, mongoose_1.InjectModel)(Tokenref.name)),
+    __param(3, (0, mongoose_1.InjectModel)(RefreshToken_schema_1.RefreshToken.name)),
     __metadata("design:paramtypes", [jwt_1.JwtService,
         encrypt_service_1.EncryptService,
         mongoose_2.Model,
         mongoose_2.Model])
-], LoginJwtService);
+], AuthService);

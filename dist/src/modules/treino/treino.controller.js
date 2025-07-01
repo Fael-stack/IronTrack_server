@@ -14,69 +14,31 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TreinoController = void 0;
 const common_1 = require("@nestjs/common");
-const treino_service_1 = require("./treino.service");
-const create_treino_dto_1 = require("./dto/create-treino.dto");
-const update_treino_dto_1 = require("./dto/update-treino.dto");
-const encrypt_service_1 = require("../../utils/encrypt/encrypt.service");
+const treino_pre_definido_service_1 = require("./treino-pre-definido.service");
+const get_pre_definido_dto_1 = require("./dto/get-pre-definido.dto");
+const swagger_1 = require("@nestjs/swagger");
+const pre_definido_schema_1 = require("./schema/pre-definido.schema");
 let TreinoController = class TreinoController {
-    constructor(treinoService, encryptService) {
-        this.treinoService = treinoService;
-        this.encryptService = encryptService;
+    constructor(treinoPreDefinidoService) {
+        this.treinoPreDefinidoService = treinoPreDefinidoService;
     }
-    create(createTreinoDto) {
-        return this.treinoService.create(createTreinoDto);
-    }
-    findAll() {
-        return this.treinoService.findAll();
-    }
-    findOne(id) {
-        return this.treinoService.findOne(id);
-    }
-    update(id, updateTreinoDto) {
-        return this.treinoService.update(id, updateTreinoDto);
-    }
-    delete(id) {
-        return this.treinoService.delete(id);
+    findPreDefinido(query) {
+        return this.treinoPreDefinidoService.getTreinoPorObjetivo(query.objetivo);
     }
 };
 exports.TreinoController = TreinoController;
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.Get)('pre-definidos'),
+    (0, swagger_1.ApiOperation)({ summary: 'Busca um plano de treino pré-definido por objetivo' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Retorna a lista de exercícios para o objetivo.', type: [pre_definido_schema_1.PreDefinido] }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Erro de validação nos parâmetros da requisição.' }),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_treino_dto_1.CreateTreinoDto]),
-    __metadata("design:returntype", void 0)
-], TreinoController.prototype, "create", null);
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TreinoController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)(":id"),
-    __param(0, (0, common_1.Param)("id")),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], TreinoController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(":id"),
-    __param(0, (0, common_1.Param)("id")),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_treino_dto_1.UpdateTreinoDto]),
-    __metadata("design:returntype", void 0)
-], TreinoController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)(":id"),
-    __param(0, (0, common_1.Param)("id")),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], TreinoController.prototype, "delete", null);
+    __metadata("design:paramtypes", [get_pre_definido_dto_1.GetPreDefinidoDto]),
+    __metadata("design:returntype", Promise)
+], TreinoController.prototype, "findPreDefinido", null);
 exports.TreinoController = TreinoController = __decorate([
-    (0, common_1.Controller)("treino"),
-    __metadata("design:paramtypes", [treino_service_1.TreinoService,
-        encrypt_service_1.EncryptService])
+    (0, swagger_1.ApiTags)('Treinos'),
+    (0, common_1.Controller)('treino'),
+    __metadata("design:paramtypes", [treino_pre_definido_service_1.TreinoPreDefinidoService])
 ], TreinoController);

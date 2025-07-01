@@ -6,28 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModule = void 0;
+exports.RefreshTokenModule = void 0;
 const common_1 = require("@nestjs/common");
-const user_service_1 = require("./user.service");
-const user_controller_1 = require("./user.controller");
-const match_decorator_1 = require("../../utils/match.decorator");
-const encrypt_service_1 = require("../../utils/encrypt/encrypt.service");
 const mongoose_1 = require("@nestjs/mongoose");
-const user_schema_1 = require("./schema/user.schema");
-let UserModule = class UserModule {
+const RefreshToken_schema_1 = require("./RefreshToken.schema");
+let RefreshTokenModule = class RefreshTokenModule {
 };
-exports.UserModule = UserModule;
-exports.UserModule = UserModule = __decorate([
+exports.RefreshTokenModule = RefreshTokenModule;
+exports.RefreshTokenModule = RefreshTokenModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: user_schema_1.User.name, schema: user_schema_1.UserSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: RefreshToken_schema_1.RefreshToken.name, schema: RefreshToken_schema_1.RefreshTokenSchema }]),
         ],
-        controllers: [user_controller_1.UserController],
-        providers: [user_service_1.UserService, match_decorator_1.Match, encrypt_service_1.EncryptService],
         exports: [
-            user_service_1.UserService,
-            encrypt_service_1.EncryptService,
             mongoose_1.MongooseModule,
         ],
     })
-], UserModule);
+], RefreshTokenModule);

@@ -1,12 +1,14 @@
 import { JwtService } from '@nestjs/jwt';
 import { Model } from 'mongoose';
+import { UserDocument } from 'src/modules/user/schema/user.schema';
 import { EncryptService } from 'src/utils/encrypt/encrypt.service';
-export declare class LoginJwtService {
+import { RefreshTokenDocument } from 'src/modules/RefreshToken/RefreshToken.schema';
+export declare class AuthService {
     private readonly jwtService;
     private readonly encryptService;
-    private readonly userSchema;
-    private readonly refreshTokenSchema;
-    constructor(jwtService: JwtService, encryptService: EncryptService, userSchema: Model<UserSchema>, refreshTokenSchema: Model<RefreshTokenSchema>);
+    private readonly userModel;
+    private readonly refreshTokenModel;
+    constructor(jwtService: JwtService, encryptService: EncryptService, userModel: Model<UserDocument>, refreshTokenModel: Model<RefreshTokenDocument>);
     login(email: string, senha: string, lembrar: boolean): Promise<{
         token: string;
         refreshToken: string;

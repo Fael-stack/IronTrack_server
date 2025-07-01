@@ -8,20 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TreinoModule = void 0;
 const common_1 = require("@nestjs/common");
-const treino_service_1 = require("./treino.service");
-const treino_controller_1 = require("./treino.controller");
-const match_decorator_1 = require("../../utils/match.decorator");
-const encrypt_service_1 = require("../../utils/encrypt/encrypt.service");
 const mongoose_1 = require("@nestjs/mongoose");
+const treino_controller_1 = require("./treino.controller");
+const treino_service_1 = require("./treino.service");
+const treino_pre_definido_service_1 = require("./treino-pre-definido.service");
 const treino_schema_1 = require("./schema/treino.schema");
+const pre_definido_schema_1 = require("./schema/pre-definido.schema");
 let TreinoModule = class TreinoModule {
 };
 exports.TreinoModule = TreinoModule;
 exports.TreinoModule = TreinoModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: treino_schema_1.Treino.name, schema: treino_schema_1.TreinoSchema }])],
+        imports: [
+            mongoose_1.MongooseModule.forFeature([
+                { name: treino_schema_1.Treino.name, schema: treino_schema_1.TreinoSchema },
+                { name: pre_definido_schema_1.PreDefinido.name, schema: pre_definido_schema_1.PreDefinidoSchema },
+            ]),
+        ],
         controllers: [treino_controller_1.TreinoController],
-        providers: [treino_service_1.TreinoService, match_decorator_1.Match, encrypt_service_1.EncryptService],
-        exports: [treino_service_1.TreinoService, encrypt_service_1.EncryptService],
+        providers: [treino_service_1.TreinoService, treino_pre_definido_service_1.TreinoPreDefinidoService],
     })
 ], TreinoModule);
