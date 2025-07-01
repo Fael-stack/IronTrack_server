@@ -55,6 +55,9 @@ let UserService = class UserService {
         }
         return { message: `User com id: ${id} deletado com sucesso` };
     }
+    async findOneByEmail(email) {
+        return this.userModel.findOne({ email }).select('+senha').exec();
+    }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([

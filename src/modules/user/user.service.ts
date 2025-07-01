@@ -56,4 +56,7 @@ export class UserService {
     }
     return { message: `User com id: ${id} deletado com sucesso` };
   }
+   async findOneByEmail(email: string): Promise<UserDocument | null> {
+    return this.userModel.findOne({ email }).select('+senha').exec();
+  }
 }
