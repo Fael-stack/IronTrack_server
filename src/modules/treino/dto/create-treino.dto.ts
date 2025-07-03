@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsMongoId, IsArray, ArrayNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsMongoId, IsArray, ArrayNotEmpty } from 'class-validator';
 
 export class CreateTreinoDto {
   @IsString()

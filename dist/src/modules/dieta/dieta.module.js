@@ -8,20 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DietaModule = void 0;
 const common_1 = require("@nestjs/common");
-const dieta_service_1 = require("./dieta.service");
-const dieta_controller_1 = require("./dieta.controller");
-const match_decorator_1 = require("../../utils/match.decorator");
-const encrypt_service_1 = require("../../utils/encrypt/encrypt.service");
 const mongoose_1 = require("@nestjs/mongoose");
+const dieta_controller_1 = require("./dieta.controller");
+const dieta_service_1 = require("./dieta.service");
+const dieta_pre_definida_service_1 = require("./dieta-pre-definida.service");
+const pre_definido_dieta_schema_1 = require("./schema/pre-definido_dieta.schema");
 const dieta_schema_1 = require("./schema/dieta.schema");
 let DietaModule = class DietaModule {
 };
 exports.DietaModule = DietaModule;
 exports.DietaModule = DietaModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: dieta_schema_1.Dieta.name, schema: dieta_schema_1.DietaSchema }])],
+        imports: [
+            mongoose_1.MongooseModule.forFeature([
+                { name: pre_definido_dieta_schema_1.PreDefinido.name, schema: pre_definido_dieta_schema_1.PreDefinidoSchema },
+                { name: dieta_schema_1.Dieta.name, schema: dieta_schema_1.DietaSchema },
+            ]),
+        ],
         controllers: [dieta_controller_1.DietaController],
-        providers: [dieta_service_1.DietaService, match_decorator_1.Match, encrypt_service_1.EncryptService],
-        exports: [dieta_service_1.DietaService, encrypt_service_1.EncryptService],
+        providers: [dieta_service_1.DietaService, dieta_pre_definida_service_1.DietaPreDefinidaService],
     })
 ], DietaModule);

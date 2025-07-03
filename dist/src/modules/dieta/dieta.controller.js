@@ -14,69 +14,31 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DietaController = void 0;
 const common_1 = require("@nestjs/common");
-const dieta_service_1 = require("./dieta.service");
-const create_dieta_dto_1 = require("./dto/create-dieta.dto");
-const update_dieta_dto_1 = require("./dto/update-dieta.dto");
-const encrypt_service_1 = require("../../utils/encrypt/encrypt.service");
+const dieta_pre_definida_service_1 = require("./dieta-pre-definida.service");
+const get_pre_definido_dieta_dto_1 = require("./dto/get-pre-definido_dieta.dto");
+const swagger_1 = require("@nestjs/swagger");
+const pre_definido_dieta_schema_1 = require("./schema/pre-definido_dieta.schema");
 let DietaController = class DietaController {
-    constructor(dietaService, encryptService) {
-        this.dietaService = dietaService;
-        this.encryptService = encryptService;
+    constructor(dietaPreDefinidaService) {
+        this.dietaPreDefinidaService = dietaPreDefinidaService;
     }
-    create(createDietaDto) {
-        return this.dietaService.create(createDietaDto);
-    }
-    findAll() {
-        return this.dietaService.findAll();
-    }
-    findOne(id) {
-        return this.dietaService.findOne(id);
-    }
-    update(id, updateDietaDto) {
-        return this.dietaService.update(id, updateDietaDto);
-    }
-    delete(id) {
-        return this.dietaService.delete(id);
+    findPreDefinida(query) {
+        return this.dietaPreDefinidaService.getDietaPorObjetivo(query.objetivo);
     }
 };
 exports.DietaController = DietaController;
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.Get)('pre-definidas'),
+    (0, swagger_1.ApiOperation)({ summary: 'Busca uma dieta pré-definida por objetivo' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Retorna a lista de dietas para o objetivo.', type: [pre_definido_dieta_schema_1.PreDefinido] }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Erro de validação nos parâmetros da requisição.' }),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_dieta_dto_1.CreateDietaDto]),
-    __metadata("design:returntype", void 0)
-], DietaController.prototype, "create", null);
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], DietaController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)(":id"),
-    __param(0, (0, common_1.Param)("id")),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], DietaController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(":id"),
-    __param(0, (0, common_1.Param)("id")),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_dieta_dto_1.UpdateDietaDto]),
-    __metadata("design:returntype", void 0)
-], DietaController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)(":id"),
-    __param(0, (0, common_1.Param)("id")),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], DietaController.prototype, "delete", null);
+    __metadata("design:paramtypes", [get_pre_definido_dieta_dto_1.GetPreDefinidoDto]),
+    __metadata("design:returntype", Promise)
+], DietaController.prototype, "findPreDefinida", null);
 exports.DietaController = DietaController = __decorate([
-    (0, common_1.Controller)("dieta"),
-    __metadata("design:paramtypes", [dieta_service_1.DietaService,
-        encrypt_service_1.EncryptService])
+    (0, swagger_1.ApiTags)('Dietas'),
+    (0, common_1.Controller)('dieta'),
+    __metadata("design:paramtypes", [dieta_pre_definida_service_1.DietaPreDefinidaService])
 ], DietaController);

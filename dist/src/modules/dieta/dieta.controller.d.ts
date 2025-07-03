@@ -1,16 +1,8 @@
-import { DietaService } from "./dieta.service";
-import { CreateDietaDto } from "./dto/create-dieta.dto";
-import { UpdateDietaDto } from "./dto/update-dieta.dto";
-import { EncryptService } from "src/utils/encrypt/encrypt.service";
+import { DietaPreDefinidaService } from './dieta-pre-definida.service';
+import { GetPreDefinidoDto } from './dto/get-pre-definido_dieta.dto';
+import { PreDefinido } from './schema/pre-definido_dieta.schema';
 export declare class DietaController {
-    private readonly dietaService;
-    private readonly encryptService;
-    constructor(dietaService: DietaService, encryptService: EncryptService);
-    create(createDietaDto: CreateDietaDto): Promise<import("./schema/dieta.schema").Dieta>;
-    findAll(): string;
-    findOne(id: string): Promise<import("./schema/dieta.schema").Dieta>;
-    update(id: string, updateDietaDto: UpdateDietaDto): Promise<import("./schema/dieta.schema").Dieta>;
-    delete(id: string): Promise<{
-        message: string;
-    }>;
+    private readonly dietaPreDefinidaService;
+    constructor(dietaPreDefinidaService: DietaPreDefinidaService);
+    findPreDefinida(query: GetPreDefinidoDto): Promise<PreDefinido[]>;
 }
