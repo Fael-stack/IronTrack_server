@@ -1,0 +1,198 @@
+
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5; 
+    padding: 20px;
+  }
+  
+
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 420px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+
+  .logoSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; 
+    margin-bottom: 25px;
+  }
+  
+  .logoIcon {
+    color: #e53935; 
+    font-size: 1.8em;
+  }
+  
+  .logoText {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #333333;
+  }
+  
+
+  .title {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  
+
+  .subtitle {
+    font-size: 0.95em;
+    color: #666666;
+    margin-bottom: 30px;
+    line-height: 1.4;
+  }
+  
+
+  .formGroup {
+    width: 100%;
+    margin-bottom: 25px;
+    text-align: left; 
+  }
+  
+  .label {
+    display: block;
+    font-size: 0.9em;
+    color: #555555;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  
+  .inputWrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 10px 15px;
+    background-color: #ffffff;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  .inputWrapper:focus-within {
+    border-color: #e53935; 
+    box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2); 
+  }
+  
+  .inputIcon {
+    color: #999999;
+    margin-right: 10px;
+    font-size: 1.1em;
+  }
+  
+  .inputField {
+    flex-grow: 1; 
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0; 
+    color: #333333;
+  }
+  
+  .inputField::placeholder {
+    color: #aaaaaa;
+  }
+  
+
+  .submitButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    background-color: #e53935; 
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin-bottom: 25px;
+  }
+  
+  .submitButton:hover {
+    background-color: #d32f2f; 
+    box-shadow: 0 2px 8px rgba(229, 57, 53, 0.3);
+  }
+  
+  .buttonIcon {
+    font-size: 1em;
+  }
+  
+
+  .backToLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .backIcon {
+    color: #666666;
+    font-size: 0.9em;
+  }
+  
+  .backLink {
+    color: #666666;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .backLink:hover {
+    color: #e53935; 
+  }
+  
+
+  .helpText {
+    font-size: 0.9em;
+    color: #777777;
+  }
+  
+  .contactLink {
+    color: #e53935; 
+    text-decoration: none;
+    font-weight: 500;
+    transition: text-decoration 0.2s ease-in-out;
+  }
+  
+  .contactLink:hover {
+    text-decoration: underline;
+  }
+  
+ 
+  @media (max-width: 480px) {
+    .card {
+      padding: 30px 20px;
+    }
+  
+    .title {
+      font-size: 1.6em;
+    }
+  
+    .subtitle {
+      font-size: 0.9em;
+    }
+  
+    .submitButton {
+      font-size: 1em;
+      padding: 12px 15px;
+    }
+  }
