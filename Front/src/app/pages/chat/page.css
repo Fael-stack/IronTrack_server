@@ -1,0 +1,222 @@
+/* app/globals.css */
+
+/* --- Estilos Globais --- */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  /* Define a fonte Poppins como padrão, mas permite usar Montserrat onde for preciso */
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+}
+
+/* --- Estilos da Sidebar --- */
+.sidebar {
+  width: 471px;
+  height: 100vh;
+  background-color: #E2E2E2;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.sidebarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.sidebarTitle {
+  font-family: var(--font-montserrat, 'Montserrat', sans-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+}
+
+.notification {
+  position: relative;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -5.5px;
+  background-color: #EF4444;
+  color: white;
+  border-radius: 9999px;
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  font-family: var(--font-montserrat, 'Montserrat', sans-serif);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchBar {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.searchBar input {
+  width: 100%;
+  height: 42px;
+  background-color: rgba(255, 255, 255, 0.72);
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  padding: 0 16px 0 40px; /* Adiciona espaço para o ícone */
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ADAEBC;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contactItem.active {
+  background-color: #DC2626;
+  color: white;
+}
+
+.avatar {
+  border-radius: 9999px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.contactName {
+  font-family: var(--font-montserrat, 'Montserrat', sans-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+.contactItem.active .contactName {
+  color: white;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+/* --- Estilos do Chat Principal --- */
+.chatLayout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.chatHeader {
+  width: 100%;
+  height: 80px;
+  background-color: #DC2626;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.headerAvatar {
+  border-radius: 9999px;
+  border: 2px solid #EF4444;
+}
+
+.headerTitle {
+  font-family: var(--font-montserrat, 'Montserrat', sans-serif);
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.messagesContainer {
+  flex-grow: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: #FAFAFA; /* Um fundo leve para a área de chat */
+}
+
+.inputArea {
+  padding: 24px;
+  background-color: #FFFFFF;
+  border-top: 1px solid #E2E2E2;
+  display: flex;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.messageInput {
+  flex-grow: 1;
+  height: 70px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  padding: 0 24px;
+  font-size: 16px;
+  background-color: rgba(209, 213, 219, 0.19);
+  box-sizing: border-box;
+}
+
+.sendButton {
+  height: 70px;
+  width: 70px;
+  border-radius: 8px;
+  border: none;
+  background-color: #DC2626;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sendButton:hover {
+  background-color: #C52020; /* Um pouco mais escuro ao passar o mouse */
+}

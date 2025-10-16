@@ -1,0 +1,70 @@
+.casa-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.casa-hero {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background: url('https://images.unsplash.com/photo-1517960413843-0aee8e2d471c?auto=format&fit=crop&w=1500&q=80') center center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.casa-hero-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.casa-title {
+  color: #fff;
+  font-size: 7rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 2px;
+  text-align: center;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.casa-subtitle {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.casa-about {
+  background: #fff;
+  padding: 3rem 2rem 2rem 2rem;
+  max-width: 900px;
+  margin: -40px auto 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.casa-about h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.casa-about p {
+  font-size: 1.2rem;
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: #222;
+  line-height: 1.4;
+}

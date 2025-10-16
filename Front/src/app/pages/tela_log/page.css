@@ -1,0 +1,122 @@
+/* Container principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f4f6fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card central */
+.usuariosContainer {
+  flex: 1;
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.usuariosContainer h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.usuariosContainer p {
+  margin-bottom: 25px;
+  color: #666;
+  font-size: 1rem;
+}
+
+/* Grid de usuários */
+.usuariosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.usuarioCard {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px;
+  background: #f9fafc;
+  border: 1px solid #e0e4ea;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.usuarioCard:hover {
+  background: #eef2f9;
+  transform: translateY(-3px);
+}
+
+/* Avatar redondo */
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #4a90e2;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Infos do usuário */
+.usuarioInfo {
+  text-align: left;
+}
+
+.usuarioNome {
+  font-weight: bold;
+  color: #222;
+  margin: 0;
+}
+
+.usuarioEmail {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 2px 0 0;
+}
+
+/* Mensagens */
+.loading,
+.emptyMessage,
+.errorMessage {
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+.errorMessage {
+  color: #d9534f;
+}
+
+.emptyMessage {
+  color: #888;
+}
+
+.loading {
+  color: #4a90e2;
+}
+
+/* Rodapé */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #f1f1f1;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: auto;
+  border-top: 1px solid #ddd;
+}
+
+.socialIcons {
+  margin-top: 8px;
+  font-size: 1.2rem;
+}
