@@ -4,17 +4,15 @@ import Treino from "../conexao/Treino/TreinoSchema.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
-
-// Todas as rotas abaixo usam authMiddleware
 router.use(authMiddleware);
 
-// 📌 Buscar todos os treinos do usuário logado
+// buscar todos os treinos do usuário logado
 router.get("/", async (req, res) => {
   try {
     const userId = req.user.id;
     let treinos = await Treino.find({ userId });
 
-    // Se não houver treinos, retorna um placeholder
+    // Se não houver treinos, retorna um placeholder pq se não o app quebra
     if (treinos.length === 0) {
       treinos = [{
         _id: null,
@@ -32,7 +30,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// 📌 Buscar treino específico do usuário
+
 router.get("/:treinoId", async (req, res) => {
   try {
     const userId = req.user.id;
@@ -49,7 +47,7 @@ router.get("/:treinoId", async (req, res) => {
   }
 });
 
-// 📌 Criar novo treino para usuário logado
+
 router.post("/", async (req, res) => {
   try {
     const userId = req.user.id;
@@ -75,7 +73,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// 📌 Adicionar exercício a um treino do usuário
+//  Adicionar exercício a um treino do usuário
 router.post("/:treinoId/exercises", async (req, res) => {
   try {
     const userId = req.user.id;
@@ -96,7 +94,7 @@ router.post("/:treinoId/exercises", async (req, res) => {
   }
 });
 
-// 📌 Marcar exercício como completo/incompleto
+//  Marcar exercício como completo/incompleto
 router.patch("/:treinoId/exercises/:exerciseId/complete", async (req, res) => {
   try {
     const userId = req.user.id;
@@ -116,7 +114,7 @@ router.patch("/:treinoId/exercises/:exerciseId/complete", async (req, res) => {
   }
 });
 
-// 📌 Deletar exercício
+//  Deletar exercício
 router.delete("/:treinoId/exercises/:exerciseId", async (req, res) => {
   try {
     const userId = req.user.id;
@@ -133,7 +131,7 @@ router.delete("/:treinoId/exercises/:exerciseId", async (req, res) => {
   }
 });
 
-// 📌 Deletar treino completo
+//  Deletar treino completo
 router.delete("/:treinoId", async (req, res) => {
   try {
     const userId = req.user.id;
@@ -147,13 +145,13 @@ router.delete("/:treinoId", async (req, res) => {
   }
 });
 
-// 📌 Atualizar treino completo
+//  Atualizar treino completo
 router.put("/:treinoId", async (req, res) => {
   try {
     const userId = req.user.id;
     const { name, day_time, week_day, exercises } = req.body;
 
-    // Verifica se o treino pertence ao usuário
+    // Verifica se o treino pertence ao usuário pq se nao crasha o app
     const treino = await Treino.findOne({ _id: req.params.treinoId, userId });
     if (!treino) {
       return res.status(404).json({ error: "Treino não encontrado" });

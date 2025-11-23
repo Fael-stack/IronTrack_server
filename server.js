@@ -36,16 +36,16 @@ app.use("/treinadores/auth", authRoutesTreinador);
 app.use("/alunos/auth", authRoutesAlunos);
 app.use("/treinos/treinador", treinoTreinadorRoutes);
 
-// MongoDB + start server after conectar
+
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/iron_track_server";
 const PORT = process.env.PORT || 4000;
 
 mongoose.connect(MONGO_URI)
   .then(() => {
     console.log("MongoDB conectado");
-    // inicializa socket.io ligado ao mesmo servidor HTTP
+    
     setupSocket(server);
-    // rota teste
+    
     app.get("/", (req, res) => res.send("API IronTrack funcionando 🚀"));
     server.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));
   })

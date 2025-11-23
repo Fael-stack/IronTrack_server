@@ -15,7 +15,7 @@ router.post("/", authMiddleware, async (req, res) => {
       req.body.userId = id;
     }
 
-    // Se treinador — verificar contrato
+    // Se treinador é verificar contrato
     if (role === "Treinador") {
       await checkTreinadorContrato(req, res, () => { });
     }
@@ -37,7 +37,7 @@ router.get("/user/:userId", async (req, res) => {
 
   try {
     const dietas = await Dieta.find({ userId });
-    // Retorna sempre array, mesmo vazio
+    
     res.json(dietas || []);
   } catch (err) {
     console.error("Erro ao buscar dietas:", err);
@@ -113,7 +113,6 @@ router.delete("/:id", authMiddleware, async (req, res) => {
 });
 
 
-// Listar todas as dietas **do usuário autenticado**
 router.get("/", async (req, res) => {
   try {
     const dietas = await Dieta.find({ userId: req.user.id });

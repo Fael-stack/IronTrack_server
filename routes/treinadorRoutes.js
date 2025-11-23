@@ -6,7 +6,7 @@ import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-// ✅ Criar treinador com geração de token
+// ccriar treinador com geração de token
 router.post("/", async (req, res) => {
   try {
     const { name, email, password, certification, birthDate, payment_info } = req.body;
@@ -55,7 +55,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ✅ Listar todos os treinadores (sem senha)
+
 router.get("/", async (req, res) => {
   try {
     const treinadores = await Treinador.find().select("-hashedPassword -__v");
@@ -66,7 +66,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ✅ Buscar dados do treinador logado
+// buscar dados do treinador logado
 router.get("/me", authMiddleware, async (req, res) => {
   try {
     const treinador = await Treinador.findById(req.user.id).select("-password");

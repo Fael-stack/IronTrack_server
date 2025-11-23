@@ -6,7 +6,7 @@ import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-// ✅ Criar aluno com geração de token
+//  Criar aluno com geração de token
 router.post("/", async (req, res) => {
   try {
     const { name, email, password, phone, weight, height, birthDate, payment_info } = req.body;
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
       paymentCustomerId: payment_info.card_number,
     });
 
-    // 🔑 Cria token JWT válido por 1 hora
+    //  Cria token JWT válido por 1 hora
     const token = jwt.sign(
       { id: aluno._id, email: aluno.email },
       process.env.JWT_SECRET || "SUA_CHAVE_SECRETA",
@@ -60,7 +60,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ✅ Listar todos os alunos (sem senha)
+//  Listar todos os alunos (sem senha)
 router.get("/", async (req, res) => {
   try {
     const alunos = await Aluno.find().select("-hashedPassword -__v");
@@ -71,7 +71,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ✅ Buscar dados do aluno logado
+//  Buscar dados do aluno logado
 router.get("/me", authMiddleware, async (req, res) => {
   try {
     const aluno = await Aluno.findById(req.user.id).select("-password");

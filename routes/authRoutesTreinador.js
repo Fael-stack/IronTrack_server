@@ -49,7 +49,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// ENDPOINT /me (dados do treinador logado)
+// dados do treinador logado)
 router.get("/me", authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id;

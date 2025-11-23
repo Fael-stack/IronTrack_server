@@ -1,17 +1,12 @@
-// back/routes/treinoTreinadorRoutes.js
+
 import express from "express";
 import Treino from "../conexao/Treino/TreinoSchema.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 import { checkTreinadorContrato } from "../middlewares/checkTreinadorContrato.js";
 
 const router = express.Router();
-
-// Todas rotas usam authMiddleware
 router.use(authMiddleware);
 
-// =========================
-// Criar treino para um aluno
-// =========================
 router.post("/", (req, res) => {
     const { role } = req.user;
 
@@ -23,7 +18,7 @@ router.post("/", (req, res) => {
         return res.status(400).json({ error: "userId (aluno) é obrigatório." });
     }
 
-    // Passa o controle para o middleware de contrato
+    
     checkTreinadorContrato(req, res, async () => {
         try {
             const { name, day_time, week_day, exercises } = req.body;
@@ -45,9 +40,7 @@ router.post("/", (req, res) => {
     });
 });
 
-// =========================
-// Listar treinos de um aluno (treinador)
-// =========================
+
 router.get("/user/:userId", async (req, res) => {
   try {
     const { role } = req.user;
@@ -57,7 +50,7 @@ router.get("/user/:userId", async (req, res) => {
       return res.status(403).json({ error: "Apenas treinadores podem acessar essa rota." });
     }
 
-    // Agora o middleware recebe alunoId corretamente via params
+    // Agora o middleware recebe alunoId corretamente via params, pq tava quebrando antes
     await checkTreinadorContrato(req, res, () => {});
 
     const treinos = await Treino.find({ userId });
@@ -71,9 +64,7 @@ router.get("/user/:userId", async (req, res) => {
 
 
 
-// =========================
-// Buscar treino por id
-// =========================
+
 router.get("/:id", async (req, res) => {
     try {
         const treino = await Treino.findById(req.params.id);
@@ -100,9 +91,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-// =========================
-// Atualizar treino
-// =========================
+
 router.put("/:id", async (req, res) => {
     try {
         const treino = await Treino.findById(req.params.id);
@@ -135,9 +124,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-// =========================
-// Deletar treino
-// =========================
+
 router.delete("/:id", async (req, res) => {
     try {
         const treino = await Treino.findById(req.params.id);

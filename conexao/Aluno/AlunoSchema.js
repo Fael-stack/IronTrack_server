@@ -13,7 +13,7 @@ const AlunoSchema = new mongoose.Schema(
 
     isPrivate: { type: Boolean, default: false },
 
-    // Relacionamentos
+    
     contracts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Contract" }],
     workouts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Treino" }],
     diets: [{ type: mongoose.Schema.Types.ObjectId, ref: "Dieta" }],
@@ -24,7 +24,7 @@ const AlunoSchema = new mongoose.Schema(
 // índice esparso para telefone (opcional)
 AlunoSchema.index({ phone: 1 }, { sparse: true });
 
-// Remove campos sensíveis ao retornar JSON
+
 AlunoSchema.methods.toJSON = function () {
   const obj = this.toObject();
   delete obj.__v;
