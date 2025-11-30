@@ -1,0 +1,154 @@
+/* Layout geral */
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #222;
+  background: #f5f5f5;
+  padding: 0 2rem;
+}
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  padding: 6rem 1rem 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+/* Botões */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.button,
+.buttonOutline {
+  padding: 0.9rem 1.6rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+}
+
+/* Botão principal */
+.button {
+  background-color: #d72828;
+  color: #fff;
+  font-weight: 600;
+}
+
+.button:hover {
+  background-color: #b02020;
+}
+
+/* Botão secundário */
+.buttonOutline {
+  border: 2px solid #d72828;
+  color: #d72828;
+  font-weight: 600;
+}
+
+.buttonOutline:hover {
+  background-color: #d72828;
+  color: #fff;
+}
+
+/* ===== FEATURES ===== */
+.features {
+  background: white;
+  padding: 4rem 2rem;
+  margin-top: 2rem;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.features h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features li {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #444;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: auto;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+
+  .features {
+    padding: 3rem 1.5rem;
+  }
+
+  .button,
+  .buttonOutline {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Links simples e minimalistas */
+.simpleLinks {
+  margin-top: 0.8rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.simpleLinks a {
+  color: #444;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+}
+
+.simpleLinks a:hover {
+  color: #d72828;
+  text-decoration: underline;
+}
+
+.simpleLinks span {
+  color: #888;
+}

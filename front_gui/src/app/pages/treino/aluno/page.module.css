@@ -1,0 +1,175 @@
+/* Container Geral */
+.container {
+  max-width: 880px;
+  margin: 40px auto;
+  padding: 20px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.card {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardHeader h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #9ca3af !important;
+}
+
+.progressTag {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 6px 12px;
+  font-weight: 700;
+  border-radius: 20px;
+  font-size: 1rem;
+}
+
+/* Barra de progresso */
+.progressBar {
+  width: 100%;
+  height: 9px;
+  background-color: #e5e7eb;
+  border-radius: 5px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+
+.cardSub {
+  color: #6b7280;
+  margin-bottom: 15px;
+}
+
+
+.exerciseList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.exerciseItem {
+  background: #f9fafb;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.exerciseItem:hover {
+  background: #eef2ff;
+}
+
+.exerciseItem span {
+  max-width: 70%;
+  font-weight: 500;
+  color: #374151;
+}
+
+.exerciseBtn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.exerciseBtn:hover {
+  background: #1d4ed8;
+}
+
+/* Ações */
+.cardActions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.actionBtn {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #f59e0b;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.actionBtn:hover {
+  background-color: #d97706;
+}
+
+.deleteBtn {
+  background-color: #ef4444;
+}
+
+.deleteBtn:hover {
+  background-color: #b91c1c;
+}
+
+
+.createBtn {
+  margin-top: 30px;
+  width: 100%;
+  padding: 14px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 40px;
+  font-weight: 700;
+  background: #10b981;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.createBtn:hover {
+  background: #0f966c;
+}

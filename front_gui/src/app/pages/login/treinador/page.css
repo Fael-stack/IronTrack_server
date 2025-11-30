@@ -1,0 +1,119 @@
+/* Container principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Formulário centralizado */
+.formContainer {
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Título e subtítulo */
+.formContainer h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.formContainer p {
+  font-size: 1em;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+/* Grupos de formulário */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.formGroup label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
+}
+
+.formGroup input {
+  padding: 10px 12px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.formGroup input:focus {
+  border-color: #b9030c;
+}
+
+/* Botões */
+.btnPrimary {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #b9030c;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.btnPrimary:hover {
+  background-color: #d3020c;
+}
+
+/* Link de cadastro */
+.loginLink {
+  margin-top: 20px;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.redLink {
+  background: none;
+  border: none;
+  color: #b9030c;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0;
+}
+
+.redLink:hover {
+  text-decoration: underline;
+}
+
+/* Mensagem de erro */
+.errorMessage {
+  color: #d9534f;
+  font-size: 0.9em;
+  margin-top: 10px;
+}
+
+/* Footer */
+.footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 0.85em;
+  color: #777;
+}
+
+.socialIcons {
+  margin-top: 8px;
+}

@@ -1,0 +1,409 @@
+
+.pageContainer {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  color: #333;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerLogoIcon {
+  color: #e53935;
+  font-size: 1.5em;
+}
+
+.headerLogoText {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #333;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.headerIcon {
+  font-size: 1.3em;
+  color: #666;
+  cursor: pointer;
+}
+
+.headerAvatarPlaceholder {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerAvatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.headerOtherAvatar {
+
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: 1px solid #ddd;
+}
+
+
+.mainContent {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+
+.profilePictureWrapper {
+  position: relative;
+  display: inline-block;
+  margin-right: 16px; 
+}
+
+
+.cameraButtonFixed {
+  position: absolute;
+  bottom: -8px;   
+  right: -8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.18s ease;
+  z-index: 11;
+  font-size: 14px;
+  color: #e53935;
+}
+
+.cameraButtonFixed:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+.profileCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 25px 30px;
+  margin-bottom: 25px;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profileAvatarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileAvatar {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #e53935;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.25s;
+}
+
+.profileAvatar:hover {
+  transform: scale(1.03);
+}
+
+.profileAvatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profileDetails {
+  text-align: left;
+}
+
+.profileName {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.profileEmail {
+  font-size: 0.95em;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.premiumBadge {
+  background-color: #f7cfdb;
+  color: #ff0000;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+
+.settingsCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 25px 0;
+}
+
+.settingsTitle {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
+  padding: 0 30px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 0;
+}
+
+.settingsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.settingsItem {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.settingsItem:hover,
+.settingsItem:focus-within {
+  background: #e53935;
+  color: #fff;
+  transform: scale(1.03);
+}
+
+.settingsItem:hover .settingsLink,
+.settingsItem:focus-within .settingsLink {
+  color: #fff;
+}
+
+.settingsItem:hover .settingsIcon,
+.settingsItem:focus-within .settingsIcon {
+  color: #fff;
+}
+
+.settingsItem:hover .settingsArrow,
+.settingsItem:focus-within .settingsArrow {
+  color: #fff;
+}
+
+.settingsLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  text-decoration: none;
+  color: #444;
+  font-size: 1em;
+  transition: background-color 0.2s ease-in-out, color 0.2s, transform 0.15s;
+}
+
+.settingsLink:hover {
+  background-color: #f7f7f7;
+  color: #e53935;
+  transform: translateY(-3px) scale(1.03);
+}
+
+.settingsLeft {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.settingsIcon {
+  font-size: 1.2em;
+  color: #e53935;
+}
+
+.settingsArrow {
+  font-size: 0.9em;
+  color: #888;
+}
+
+
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 20px;
+  }
+
+  .mainContent {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .profileCard,
+  .settingsCard {
+    padding: 20px 20px;
+  }
+
+  .profileName {
+    font-size: 1.4em;
+  }
+
+  .profileEmail {
+    font-size: 0.9em;
+  }
+
+  .profileAvatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .settingsTitle {
+    padding: 0 20px 15px;
+  }
+
+  .settingsLink {
+    padding: 12px 20px;
+  }
+
+  .settingsIcon {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerLogoText {
+    font-size: 1.1em;
+  }
+
+  .headerRight {
+    gap: 10px;
+  }
+
+  .headerIcon {
+    font-size: 1.1em;
+  }
+
+  .headerAvatarPlaceholder,
+  .headerOtherAvatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mainContent {
+    padding: 0 10px;
+  }
+
+  .profileCard,
+  .settingsCard {
+    padding: 15px;
+  }
+
+  .profileInfo {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .profileAvatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .profileName {
+    font-size: 1.3em;
+  }
+
+  .settingsTitle {
+    padding: 0 15px 10px;
+  }
+
+  .settingsLink {
+    padding: 10px 15px;
+    font-size: 0.95em;
+  }
+}
+
+.submenuContent {
+  background-color: #fafafa;
+  padding: 15px 40px 15px 70px;
+  border-left: 3px solid #e53935;
+  color: #555;
+  font-size: 0.95em;
+  line-height: 1.4em;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.submenuContent p {
+  margin: 8px 0;
+}
+
+.submenuContent ul {
+  padding-left: 20px;
+  margin: 8px 0;
+  list-style-type: disc;
+}
+
+.submenuContent ul li {
+  margin-bottom: 6px;
+}
+
+
+.settingsLink button {
+  cursor: pointer;
+}
+
+
+.settingsLink button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.5);
+}
+
+
+.settingsArrow {
+  transition: transform 0.3s ease;
+}
+
+.settingsArrow[data-open='true'] {
+  transform: rotate(90deg);
+}
+
